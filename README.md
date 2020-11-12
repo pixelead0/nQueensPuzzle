@@ -60,3 +60,16 @@ Options:
 
   --help                Show this message and exit.
 ```
+
+# Demo:
+
+Queens Puzzle with python example
+[![asciicast](https://asciinema.org/a/372371.svg)](https://asciinema.org/a/372371)
+
+Queens Puzzle with python - 12x12
+[![asciicast](https://asciinema.org/a/372373.svg)](https://asciinema.org/a/372373)
+
+Queens Puzzle with python - 13x13
+[![asciicast](https://asciinema.org/a/372370.svg)](https://asciinema.org/a/372370)
+
+https://asciinema.org/a/372370
