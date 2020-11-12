@@ -9,7 +9,7 @@ from datetime import timedelta
     "-n",
     "--pieces",
     default=8,
-    help="Number of queens.",
+    help="Number of queens (default=8).",
 )
 @click.option(
     "-f",
@@ -28,11 +28,25 @@ from datetime import timedelta
         corresponding row.
         """,
 )
-def calculate_solution_queens(pieces, full_board, short_board):
+@click.option(
+    "-db",
+    "--save_db",
+    is_flag=True,
+    default=False,
+    help="Save the solutions on database.",
+)
+@click.option(
+    "-g",
+    "--get_db",
+    is_flag=True,
+    default=False,
+    help="Get the solutions from database (this option exclude -db).",
+)
+def calculate_solution(pieces, full_board, short_board, save_db, get_db):
     """The eight queens puzzle in Python."""
     t = time.process_time()
 
-    queens = NQueens(pieces, full_board, short_board)
+    queens = NQueens(pieces, full_board, short_board, save_db, get_db)
     solutions = queens.solve()
     print(f"Found {solutions} solutions.")
 
@@ -41,4 +55,4 @@ def calculate_solution_queens(pieces, full_board, short_board):
 
 
 if __name__ == "__main__":
-    calculate_solution_queens()  # pylint: disable=no-value-for-parameter
+    calculate_solution()  # pylint: disable=no-value-for-parameter

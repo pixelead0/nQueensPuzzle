@@ -46,19 +46,49 @@ docker-compose up
 To run use: `docker-compose exec app python puzzle_queen.py --help`
 
 ```shell
-docker-compose exec app python  puzzle_queen.py --help
+$ docker-compose exec app python  puzzle_queen.py --help
 Usage: puzzle_queen.py [OPTIONS]
 
   The eight queens puzzle in Python.
 
 Options:
-  -n, --pieces INTEGER  Number of queens.
+  -n, --pieces INTEGER  Number of queens (default=8).
   -f, --full_board      Show solutions on full NxN board.
   -s, --short_board     Show the queens positions on the board in compressed
                         form, each number represent the occupied column
                         position in the corresponding row.
 
+  -db, --save_db        Save the solutions on database.
+  -g, --get_db          Get the solutions from database (this option exclude
+                        -db).
+
   --help                Show this message and exit.
+
+```
+
+Usage examples :
+
+```
+# Calculate 8 queens and show solutions on 8x8 board without save on database.
+docker-compose exec app python  puzzle_queen.py --full_board
+
+# Calculate 10 queens and show solutions on 10x10 board, show short solution and saving on database.
+docker-compose exec app python  puzzle_queen.py --full_board --short_board --pieces 10
+
+# Calculate 10 queens and show solutions on 10x10 board, show short solution without save on database.
+docker-compose exec app python  puzzle_queen.py --save_db --full_board --short_board --pieces 10
+
+# Get from database the solutions for 10 queens and show on 10x10 board
+docker-compose exec app python  puzzle_queen.py --get_db --full_board --pieces 10
+```
+
+# Connect to database
+
+For connect to database container
+
+```
+source .env
+docker-compose exec db  psql -U $POSTGRES_USER $POSTGRES_DB
 ```
 
 # Demo:
@@ -71,5 +101,3 @@ Queens Puzzle with python - 12x12
 
 Queens Puzzle with python - 13x13
 [![asciicast](https://asciinema.org/a/372370.svg)](https://asciinema.org/a/372370)
-
-https://asciinema.org/a/372370
